@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace GraduateProject.Entities
+namespace GraduateProject.Entities;
+
+public class Role : IdentityRole<Guid>
 {
-    public class Role : IdentityRole<Guid>
-    {
-        public string Description { get; set; }
-    }
+    public string Description { get; set; }
 }

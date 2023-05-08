@@ -1,12 +1,20 @@
-﻿namespace GraduateProject.Entities
+﻿using GraduateProject.Entities.Curriculum;
+
+namespace GraduateProject.Entities;
+
+public class Group
 {
-    public class Group
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public DateTime EntryDate { get; set; }
-        public ICollection<Student> Students { get; set; }
-        public Guid CuratorId { get; set; }
-        public Teacher Curator { get; set; }
-    }
+    public Guid Id { get; set; }
+    public bool IsDeleted { get; set; }
+    public bool IsHidden { get; set; }
+
+    public string Name { get; set; }
+    public DateTime EntryDate { get; set; }
+
+    public Guid CuratorId { get; set; }
+    public Guid StudyDirectionId { get; set; }
+
+    public ICollection<Student> Students { get; set; }
+    public Teacher Curator { get; set; }
+    public StudyDirection StudyDirection { get; set; }
 }
