@@ -27,7 +27,8 @@ public class EducationalPlanCycleDiscipline
     /// Количество часов на промежуточную аттестацию
     /// </summary>
     public int CertificationHours { get; set; }
-    
+
     public EducationalPlanCycle EducationalPlanCycle { get; set; }
     public Discipline Discipline { get; set; }
+    public ICollection<EducationalPlanCycleDisciplineSemester> EducationalPlanCycleDisciplineSemesters { get; set; }
 }
