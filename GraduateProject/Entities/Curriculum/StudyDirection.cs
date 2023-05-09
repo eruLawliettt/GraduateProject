@@ -14,6 +14,6 @@ public class StudyDirection
     /// Длительность обучения в месяцах.
     /// </summary>
     public int Period { get; set; }
-
+     
     public ICollection<Group> Groups { get; set; }
 }

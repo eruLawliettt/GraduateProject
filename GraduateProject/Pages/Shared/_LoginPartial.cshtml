@@ -7,11 +7,11 @@
 
 @{
     string fullName = string.Empty;
-    if (SignInManager.IsSignedIn(User))
-    {
-        var user = await UserManager.GetUserAsync(User);
-        fullName = $"{user.FirstName} {user.MiddleName}";
-    }
+    //if (SignInManager.IsSignedIn(User))
+    //{
+    //    var user = await UserManager.GetUserAsync(User);
+    //    fullName = $"{user.FirstName} {user.MiddleName}";
+    //}
 }
 
 <ul class="navbar-nav">

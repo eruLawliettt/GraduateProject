@@ -6,9 +6,9 @@ public class Plan
     public bool IsDeleted { get; set; }
     public bool IsHidden { get; set; }
 
-    public Guid GroupId { get; set; }
+    public Guid? GroupId { get; set; }
     
-    public Group Group { get; set; }
+    public Group Group { get; set; }  
     public ICollection<PlanCycle> PlanCycles { get; set; }
     public ICollection<Semester> Semesters { get; set; }
 }

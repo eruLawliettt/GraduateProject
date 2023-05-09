@@ -99,18 +99,6 @@ namespace GraduateProject.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-
-            [DataType(DataType.Text)]
-            [Display(Name = "Имя")]
-            public string FirstName { get; set; }
-
-            [DataType(DataType.Text)]
-            [Display(Name = "Фамилия")]
-            public string LastName { get; set; }
-
-            [DataType(DataType.Text)]
-            [Display(Name = "Отчество")]
-            public string MiddleName { get; set; }
         }
 
 
@@ -130,9 +118,6 @@ namespace GraduateProject.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.FirstName = Input.FirstName;
-                user.LastName = Input.LastName;
-                user.MiddleName = Input.MiddleName;
 
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

@@ -8,7 +8,7 @@
         public Guid Id { get; set; }
         public Guid PlanCycleDisciplineId { get; set; }
         public Guid SemesterId { get; set; }
-
+         
         /// <summary>
         /// Количество часов теоретического обучения
         /// </summary>

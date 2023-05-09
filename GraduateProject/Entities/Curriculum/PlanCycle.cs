@@ -9,6 +9,6 @@ public class PlanCycle
 
     public Plan Plan { get; set; }
     public Cycle Cycle { get; set; }
-
+     
     public ICollection<PlanCycleDiscipline> PlanCycleDisciplines { get; set; }
 }

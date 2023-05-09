@@ -12,7 +12,7 @@ public class PlanCycleDiscipline
     /// Количество часов на промежуточную аттестацию
     /// </summary>
     public int CertificationHours { get; set; }
-
+     
     public Guid ProfessionalModuleId { get; set; }
 
     public PlanCycle PlanCycle { get; set; }

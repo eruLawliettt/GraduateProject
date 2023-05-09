@@ -7,6 +7,6 @@
         public string Description { get; set; }
 
         public ICollection<ProfessionalModule> ProfessionalModules { get; set; }
-        public ICollection<PlanCycleDisciplineSemester> PlanCycleDisciplineSemesters { get; set; }
+        public ICollection<PlanCycleDisciplineSemester> PlanCycleDisciplineSemesters { get; set; } 
     }
 }

@@ -15,7 +15,7 @@
         /// </summary>
         public int CertificationHours { get; set; }
         
-        public Guid CertificationFormId { get; set; }
+        public Guid CertificationFormId { get; set; } 
 
         public CertificationForm CertificationForm { get; set; }
         public ICollection<PlanCycleDiscipline> PlanCycleDisciplines { get; set; }

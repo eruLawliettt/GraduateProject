@@ -12,8 +12,7 @@ public class Group
     public DateTime EntryDate { get; set; }
 
     public Guid StudyDirectionId { get; set; }
-    public Guid PlanId { get; set; }
-
+    
     public StudyDirection StudyDirection { get; set; }
     public Plan Plan { get; set; }
 }
