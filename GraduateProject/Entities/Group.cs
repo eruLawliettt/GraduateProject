@@ -11,10 +11,9 @@ public class Group
     public string Name { get; set; }
     public DateTime EntryDate { get; set; }
 
-    public Guid CuratorId { get; set; }
     public Guid StudyDirectionId { get; set; }
+    public Guid PlanId { get; set; }
 
-    public ICollection<Student> Students { get; set; }
-    public Teacher Curator { get; set; }
     public StudyDirection StudyDirection { get; set; }
+    public Plan Plan { get; set; }
 }

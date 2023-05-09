@@ -1,6 +1,6 @@
 ﻿namespace GraduateProject.Entities.Curriculum;
 
-public class EducationalCycle
+public class Cycle
 {
     public Guid Id { get; set; }
     public bool IsDeleted { get; set; }
@@ -9,5 +9,5 @@ public class EducationalCycle
     public string Code { get; set; }
     public string Name { get; set; }
     
-    public ICollection<EducationalPlanCycle> EducationalPlanCycles { get; set; }
+    public ICollection<PlanCycle> PlanCycles { get; set; }
 }

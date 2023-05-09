@@ -8,7 +8,8 @@ public class Semester
     
     public int Number { get; set; }
     
-    public Guid EducationalPlanId { get; set; }
+    public Guid PlanId { get; set; }
     
-    public EducationalPlan EducationalPlan { get; set; }
+    public Plan Plan { get; set; }
+    public ICollection<PlanCycleDisciplineSemester> PlanCycleDisciplineSemesters { get; set; }
 }

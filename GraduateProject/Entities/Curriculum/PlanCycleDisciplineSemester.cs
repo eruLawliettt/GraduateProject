@@ -3,9 +3,10 @@
     /// <summary>
     /// DEEP WEB SHIT
     /// </summary>
-    public class EducationalPlanCycleDisciplineSemester
+    public class PlanCycleDisciplineSemester
     {
-        public Guid EducationalPlanCycleDisciplineId { get; set; }
+        public Guid Id { get; set; }
+        public Guid PlanCycleDisciplineId { get; set; }
         public Guid SemesterId { get; set; }
 
         /// <summary>
@@ -18,7 +19,10 @@
         /// </summary>
         public int PracticalHours { get; set; }
 
-        public EducationalPlanCycleDiscipline EducationalPlanCycleDiscipline { get; set; }
+        public Guid CertificationFormId { get; set; }
+
+        public PlanCycleDiscipline PlanCycleDiscipline { get; set; }
         public Semester Semester { get; set; }
+        public CertificationForm CertificationForm { get; set; }
     }
 }
