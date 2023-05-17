@@ -1,5 +1,5 @@
-﻿using GraduateProject.Entities;
-using GraduateProject.Entities.Curriculum;
+﻿using GraduateProject.Entities.Curriculum;
+using GraduateProject.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -39,13 +39,13 @@ namespace GraduateProject.Data
 
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             
-            builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
-            builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins");
-            builder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
-            builder.Entity<User>().ToTable("Users");
-            builder.Entity<Role>().ToTable("Roles");
-            builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
-            builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
+            builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims", "identity");
+            builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins", "identity");
+            builder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens", "identity");
+            builder.Entity<User>().ToTable("Users", "identity");
+            builder.Entity<Role>().ToTable("Roles", "identity");
+            builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims", "identity");
+            builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles", "identity");
         }
     }
 }

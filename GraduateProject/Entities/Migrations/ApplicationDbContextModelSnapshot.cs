@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GraduateProject.Entities.Migrations
+namespace GraduateProject.entities.migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -301,35 +301,7 @@ namespace GraduateProject.Entities.Migrations
                     b.ToTable("StudyDirections", "curriculum");
                 });
 
-            modelBuilder.Entity("GraduateProject.Entities.Group", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("EntryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("StudyDirectionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudyDirectionId");
-
-                    b.ToTable("Group");
-                });
-
-            modelBuilder.Entity("GraduateProject.Entities.Role", b =>
+            modelBuilder.Entity("GraduateProject.Entities.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -357,10 +329,10 @@ namespace GraduateProject.Entities.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles", "identity");
                 });
 
-            modelBuilder.Entity("GraduateProject.Entities.User", b =>
+            modelBuilder.Entity("GraduateProject.Entities.Identity.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -423,7 +395,117 @@ namespace GraduateProject.Entities.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users", "identity");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.EmployeePosition", b =>
+                {
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PositionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("EmployeeId", "PositionId")
+                        .HasName("PK_EmployeePositions_EmployeeId_PositionId");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("EmployeePositions", "subject");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Group", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("StudyDirectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SupervisorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Groups_Id");
+
+                    b.HasIndex("StudyDirectionId");
+
+                    b.HasIndex("SupervisorId");
+
+                    b.ToTable("Group", "subject");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Persons_Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Persons", "subject");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Position", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Positions_Id");
+
+                    b.ToTable("Positions", "subject");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -447,7 +529,7 @@ namespace GraduateProject.Entities.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims", (string)null);
+                    b.ToTable("RoleClaims", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -471,7 +553,7 @@ namespace GraduateProject.Entities.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims", (string)null);
+                    b.ToTable("UserClaims", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -494,7 +576,7 @@ namespace GraduateProject.Entities.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins", (string)null);
+                    b.ToTable("UserLogins", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -509,7 +591,7 @@ namespace GraduateProject.Entities.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles", "identity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -530,12 +612,31 @@ namespace GraduateProject.Entities.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens", (string)null);
+                    b.ToTable("UserTokens", "identity");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Employee", b =>
+                {
+                    b.HasBaseType("GraduateProject.Entities.Subjects.Person");
+
+                    b.HasDiscriminator().HasValue("Employee");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Student", b =>
+                {
+                    b.HasBaseType("GraduateProject.Entities.Subjects.Person");
+
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasDiscriminator().HasValue("Student");
                 });
 
             modelBuilder.Entity("GraduateProject.Entities.Curriculum.Plan", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.Group", "Group")
+                    b.HasOne("GraduateProject.Entities.Subjects.Group", "Group")
                         .WithOne("Plan")
                         .HasForeignKey("GraduateProject.Entities.Curriculum.Plan", "GroupId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -649,20 +750,63 @@ namespace GraduateProject.Entities.Migrations
                     b.Navigation("Plan");
                 });
 
-            modelBuilder.Entity("GraduateProject.Entities.Group", b =>
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.EmployeePosition", b =>
+                {
+                    b.HasOne("GraduateProject.Entities.Subjects.Employee", "Employee")
+                        .WithMany("EmployeePositions")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_EmployeePositions_EmployeeId_Employees_Id");
+
+                    b.HasOne("GraduateProject.Entities.Subjects.Position", "Position")
+                        .WithMany("EmployeePositions")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_EmployeePositions_PositionId_Positions_Id");
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Position");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Group", b =>
                 {
                     b.HasOne("GraduateProject.Entities.Curriculum.StudyDirection", "StudyDirection")
                         .WithMany("Groups")
                         .HasForeignKey("StudyDirectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Groups_StudyDirectionId_StudyDirections_Id");
+
+                    b.HasOne("GraduateProject.Entities.Subjects.Employee", "Supervisor")
+                        .WithMany("SupervisedGroups")
+                        .HasForeignKey("SupervisorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Groups_SupervisorId_Employees_Id");
 
                     b.Navigation("StudyDirection");
+
+                    b.Navigation("Supervisor");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Person", b =>
+                {
+                    b.HasOne("GraduateProject.Entities.Identity.User", "User")
+                        .WithOne("Person")
+                        .HasForeignKey("GraduateProject.Entities.Subjects.Person", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Persons_UserId_Users_Id");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.Role", null)
+                    b.HasOne("GraduateProject.Entities.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -671,7 +815,7 @@ namespace GraduateProject.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.User", null)
+                    b.HasOne("GraduateProject.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -680,7 +824,7 @@ namespace GraduateProject.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.User", null)
+                    b.HasOne("GraduateProject.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -689,13 +833,13 @@ namespace GraduateProject.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.Role", null)
+                    b.HasOne("GraduateProject.Entities.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GraduateProject.Entities.User", null)
+                    b.HasOne("GraduateProject.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -704,11 +848,22 @@ namespace GraduateProject.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("GraduateProject.Entities.User", null)
+                    b.HasOne("GraduateProject.Entities.Identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Student", b =>
+                {
+                    b.HasOne("GraduateProject.Entities.Subjects.Group", "Group")
+                        .WithMany("Students")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("GraduateProject.Entities.Curriculum.CertificationForm", b =>
@@ -760,9 +915,28 @@ namespace GraduateProject.Entities.Migrations
                     b.Navigation("Groups");
                 });
 
-            modelBuilder.Entity("GraduateProject.Entities.Group", b =>
+            modelBuilder.Entity("GraduateProject.Entities.Identity.User", b =>
+                {
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Group", b =>
                 {
                     b.Navigation("Plan");
+
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Position", b =>
+                {
+                    b.Navigation("EmployeePositions");
+                });
+
+            modelBuilder.Entity("GraduateProject.Entities.Subjects.Employee", b =>
+                {
+                    b.Navigation("EmployeePositions");
+
+                    b.Navigation("SupervisedGroups");
                 });
 #pragma warning restore 612, 618
         }

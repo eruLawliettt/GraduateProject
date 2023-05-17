@@ -1,5 +1,5 @@
 using GraduateProject.Data;
-using GraduateProject.Entities;
+using GraduateProject.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

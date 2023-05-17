@@ -3,14 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GraduateProject.Entities.Migrations
+namespace GraduateProject.entities.migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "curriculum");
+
+            migrationBuilder.EnsureSchema(
+                name: "subject");
+
+            migrationBuilder.EnsureSchema(
+                name: "identity");
 
             migrationBuilder.CreateTable(
                 name: "CertificationForms",
@@ -62,7 +68,22 @@ namespace GraduateProject.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Positions",
+                schema: "subject",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions_Id", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -96,6 +117,7 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -146,6 +168,7 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateTable(
                 name: "RoleClaims",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -160,36 +183,15 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "identity",
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Group",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsHidden = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EntryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StudyDirectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Group", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Group_StudyDirections_StudyDirectionId",
-                        column: x => x.StudyDirectionId,
-                        principalSchema: "curriculum",
-                        principalTable: "StudyDirections",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserClaims",
+                schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -204,6 +206,7 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "FK_UserClaims_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -211,6 +214,7 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserLogins",
+                schema: "identity",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
@@ -224,6 +228,7 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "FK_UserLogins_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -231,6 +236,7 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserRoles",
+                schema: "identity",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -242,12 +248,14 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "identity",
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -255,6 +263,7 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserTokens",
+                schema: "identity",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -268,6 +277,85 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "FK_UserTokens_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "identity",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeePositions",
+                schema: "subject",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeePositions_EmployeeId_PositionId", x => new { x.EmployeeId, x.PositionId });
+                    table.ForeignKey(
+                        name: "FK_EmployeePositions_PositionId_Positions_Id",
+                        column: x => x.PositionId,
+                        principalSchema: "subject",
+                        principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Group",
+                schema: "subject",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsHidden = table.Column<bool>(type: "bit", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EntryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StudyDirectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SupervisorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups_Id", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Groups_StudyDirectionId_StudyDirections_Id",
+                        column: x => x.StudyDirectionId,
+                        principalSchema: "curriculum",
+                        principalTable: "StudyDirections",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Persons",
+                schema: "subject",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persons_Id", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Persons_Group_GroupId",
+                        column: x => x.GroupId,
+                        principalSchema: "subject",
+                        principalTable: "Group",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Persons_UserId_Users_Id",
+                        column: x => x.UserId,
+                        principalSchema: "identity",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -289,6 +377,7 @@ namespace GraduateProject.Entities.Migrations
                     table.ForeignKey(
                         name: "PK_Plans_GroupId_Groups_Id",
                         column: x => x.GroupId,
+                        principalSchema: "subject",
                         principalTable: "Group",
                         principalColumn: "Id");
                 });
@@ -411,9 +500,35 @@ namespace GraduateProject.Entities.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeePositions_PositionId",
+                schema: "subject",
+                table: "EmployeePositions",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Group_StudyDirectionId",
+                schema: "subject",
                 table: "Group",
                 column: "StudyDirectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Group_SupervisorId",
+                schema: "subject",
+                table: "Group",
+                column: "SupervisorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Persons_GroupId",
+                schema: "subject",
+                table: "Persons",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Persons_UserId",
+                schema: "subject",
+                table: "Persons",
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlanCycleDisciplines_DisciplineId",
@@ -482,11 +597,13 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
+                schema: "identity",
                 table: "RoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
+                schema: "identity",
                 table: "Roles",
                 column: "NormalizedName",
                 unique: true,
@@ -500,52 +617,94 @@ namespace GraduateProject.Entities.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
+                schema: "identity",
                 table: "UserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogins_UserId",
+                schema: "identity",
                 table: "UserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
+                schema: "identity",
                 table: "UserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
+                schema: "identity",
                 table: "Users",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
+                schema: "identity",
                 table: "Users",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_EmployeePositions_EmployeeId_Employees_Id",
+                schema: "subject",
+                table: "EmployeePositions",
+                column: "EmployeeId",
+                principalSchema: "subject",
+                principalTable: "Persons",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Groups_SupervisorId_Employees_Id",
+                schema: "subject",
+                table: "Group",
+                column: "SupervisorId",
+                principalSchema: "subject",
+                principalTable: "Persons",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Groups_SupervisorId_Employees_Id",
+                schema: "subject",
+                table: "Group");
+
+            migrationBuilder.DropTable(
+                name: "EmployeePositions",
+                schema: "subject");
+
             migrationBuilder.DropTable(
                 name: "PlanCycleDisciplineSemesters",
                 schema: "curriculum");
 
             migrationBuilder.DropTable(
-                name: "RoleClaims");
+                name: "RoleClaims",
+                schema: "identity");
 
             migrationBuilder.DropTable(
-                name: "UserClaims");
+                name: "UserClaims",
+                schema: "identity");
 
             migrationBuilder.DropTable(
-                name: "UserLogins");
+                name: "UserLogins",
+                schema: "identity");
 
             migrationBuilder.DropTable(
-                name: "UserRoles");
+                name: "UserRoles",
+                schema: "identity");
 
             migrationBuilder.DropTable(
-                name: "UserTokens");
+                name: "UserTokens",
+                schema: "identity");
+
+            migrationBuilder.DropTable(
+                name: "Positions",
+                schema: "subject");
 
             migrationBuilder.DropTable(
                 name: "PlanCycleDisciplines",
@@ -556,10 +715,8 @@ namespace GraduateProject.Entities.Migrations
                 schema: "curriculum");
 
             migrationBuilder.DropTable(
-                name: "Roles");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "Roles",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "Disciplines",
@@ -586,7 +743,16 @@ namespace GraduateProject.Entities.Migrations
                 schema: "curriculum");
 
             migrationBuilder.DropTable(
-                name: "Group");
+                name: "Persons",
+                schema: "subject");
+
+            migrationBuilder.DropTable(
+                name: "Group",
+                schema: "subject");
+
+            migrationBuilder.DropTable(
+                name: "Users",
+                schema: "identity");
 
             migrationBuilder.DropTable(
                 name: "StudyDirections",

@@ -1,6 +1,6 @@
 ﻿using GraduateProject.Entities.Curriculum;
 
-namespace GraduateProject.Entities;
+namespace GraduateProject.Entities.Subjects;
 
 public class Group
 {
@@ -12,7 +12,18 @@ public class Group
     public DateTime EntryDate { get; set; }
 
     public Guid StudyDirectionId { get; set; }
-    
+
+    /// <summary>
+    /// Идентификатор руководителя группы
+    /// </summary>
+    public Guid SupervisorId { get; set; }
+
     public StudyDirection StudyDirection { get; set; }
+
+    /// <summary>
+    /// Куратор
+    /// </summary>
+    public Employee Supervisor { get; set; }
     public Plan Plan { get; set; }
+    public ICollection<Student> Students { get; set; }
 }

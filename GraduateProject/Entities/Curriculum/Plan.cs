@@ -1,4 +1,6 @@
-﻿namespace GraduateProject.Entities.Curriculum;
+﻿using GraduateProject.Entities.Subjects;
+
+namespace GraduateProject.Entities.Curriculum;
 
 public class Plan
 {

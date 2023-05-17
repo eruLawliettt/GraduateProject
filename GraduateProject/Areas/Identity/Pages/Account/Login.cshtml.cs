@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using GraduateProject.Entities;
+using GraduateProject.Entities.Identity;
 
 namespace GraduateProject.Areas.Identity.Pages.Account
 {
