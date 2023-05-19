@@ -6,11 +6,11 @@
 
 
 @{
-    string fullName = string.Empty;
+    string email = string.Empty;
     if (SignInManager.IsSignedIn(User))
     {
         var user = await UserManager.GetUserAsync(User);
-        fullName = $"{user.Email}";
+        email = $"{user.Email}";
     }
 }
 
@@ -18,7 +18,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark"> Здравствуйте, </a>
+        <a  class="nav-link text-dark"> Здравствуйте, @email</a>
     </li>
     <li class="nav-item">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >

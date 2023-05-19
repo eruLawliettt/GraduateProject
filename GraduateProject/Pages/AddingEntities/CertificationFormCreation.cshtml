@@ -1,0 +1,23 @@
+﻿@page
+@model GraduateProject.Pages.AddingEntities.CertificationFormCreationModel
+@{
+}
+
+
+<form class="col-6 mx-auto my-3" method="post">
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.Name" aria-required="true" />
+        <label class="form-label" asp-for="Input.Name"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.Description" aria-required="true" />
+        <label class="form-label" asp-for="Input.Description"></label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+        Добавить Форму Аттестации
+    </button>
+
+</form>

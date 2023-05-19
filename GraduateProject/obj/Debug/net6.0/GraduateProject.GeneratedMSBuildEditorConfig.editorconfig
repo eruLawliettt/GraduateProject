@@ -44,8 +44,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/Curriculum/Curriculum.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VycmljdWx1bVxDdXJyaWN1bHVtLmNzaHRtbA==
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/CertificationFormCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcQ2VydGlmaWNhdGlvbkZvcm1DcmVhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/CycleCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcQ3ljbGVDcmVhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/StudyDirectionCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcU3R1ZHlEaXJlY3Rpb25DcmVhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/Curriculum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VycmljdWx1bVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/Error.cshtml]

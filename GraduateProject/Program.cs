@@ -1,5 +1,7 @@
 using GraduateProject.Data;
 using GraduateProject.Entities.Identity;
+using GraduateProject.Services.Curriculum;
+using GraduateProject.Services.Curriculum.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +23,13 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireNonAlphanumeric = false;
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddTransient<ApplicationDbContext>();
+builder.Services.AddTransient<IPlanService, PlanService>();
+builder.Services.AddTransient<IStudyDirectionService, StudyDirectionService>();
+builder.Services.AddTransient<ICycleService, CycleService>();
+builder.Services.AddTransient<ICertificationFormService, CertificationFormService>();
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

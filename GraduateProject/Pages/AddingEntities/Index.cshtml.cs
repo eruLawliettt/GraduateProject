@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GraduateProject.Pages.Curriculum
+namespace GraduateProject.Pages.AddingEntities
 {
-    public class CurriculumModel : PageModel
+    public class IndexModel : PageModel
     {
         public void OnGet()
         {
