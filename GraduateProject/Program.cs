@@ -29,6 +29,9 @@ builder.Services.AddTransient<IPlanService, PlanService>();
 builder.Services.AddTransient<IStudyDirectionService, StudyDirectionService>();
 builder.Services.AddTransient<ICycleService, CycleService>();
 builder.Services.AddTransient<ICertificationFormService, CertificationFormService>();
+builder.Services.AddTransient<IProfessionalModuleService, ProfessionalModuleService>();
+builder.Services.AddTransient<IDisciplineService, DisciplineService>();
+builder.Services.AddTransient<ISemesterService, SemesterService>();
 
 builder.Services.AddRazorPages();
 

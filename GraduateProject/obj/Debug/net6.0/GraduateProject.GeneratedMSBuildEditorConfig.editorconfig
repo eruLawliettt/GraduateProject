@@ -52,8 +52,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcQ3ljbGVDcmVhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/DisciplineCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcRGlzY2lwbGluZUNyZWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/ProfessionalModuleCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcUHJvZmVzc2lvbmFsTW9kdWxlQ3JlYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/SemesterCreation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkaW5nRW50aXRpZXNcU2VtZXN0ZXJDcmVhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Emiya/source/repos/GraduateProject/GraduateProject/Pages/AddingEntities/StudyDirectionCreation.cshtml]
