@@ -17,7 +17,7 @@ namespace GraduateProject.Pages.AddingEntities
         {
             _professionalModuleService = professionalModuleService;
             _certificationFormService = certificationFormService;
-            CertificationForms = _certificationFormService.GetAllCertificationForms();     
+            CertificationForms = _certificationFormService.GetAllCertificationForms();    
         }
 
 
@@ -26,11 +26,14 @@ namespace GraduateProject.Pages.AddingEntities
 
         public void OnGet()
         {
+            
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var professionalModul = new ProfessionalModule()
+
+
+            var professionalModule = new ProfessionalModule()
             {
                 IsDeleted = false,
                 IsHidden = false,
@@ -38,10 +41,10 @@ namespace GraduateProject.Pages.AddingEntities
                 Name = Input.Name,
                 Description = Input.Description,
                 CertificationHours = Input.CertificationHours,
-                CertificationFormId = Input.CertificationForm.Id,
+                CertificationFormId = Guid.Parse(Input.CertificationFormId)
             };
 
-            await _professionalModuleService.CreateProfessionalModuleAsync(professionalModul);
+            await _professionalModuleService.CreateProfessionalModuleAsync(professionalModule);
 
             return RedirectToPage("Index");
         }
@@ -66,7 +69,7 @@ namespace GraduateProject.Pages.AddingEntities
 
             [Required]
             [Display(Name = "Форма аттестации")]
-            public CertificationForm CertificationForm { get; set; }
+            public string CertificationFormId { get; set; }
         }
     }
 }

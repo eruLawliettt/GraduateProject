@@ -10459,19 +10459,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Emiya\\.nuget\\packages\\": {}
+    "C:\\Users\\roman\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Emiya\\source\\repos\\GraduateProject\\GraduateProject\\GraduateProject.csproj",
+      "projectUniqueName": "C:\\Users\\roman\\OneDrive\\Документы\\source\\GraduateProject\\GraduateProject\\GraduateProject.csproj",
       "projectName": "GraduateProject",
-      "projectPath": "C:\\Users\\Emiya\\source\\repos\\GraduateProject\\GraduateProject\\GraduateProject.csproj",
-      "packagesPath": "C:\\Users\\Emiya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Emiya\\source\\repos\\GraduateProject\\GraduateProject\\obj\\",
+      "projectPath": "C:\\Users\\roman\\OneDrive\\Документы\\source\\GraduateProject\\GraduateProject\\GraduateProject.csproj",
+      "packagesPath": "C:\\Users\\roman\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\roman\\OneDrive\\Документы\\source\\GraduateProject\\GraduateProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Emiya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\roman\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
