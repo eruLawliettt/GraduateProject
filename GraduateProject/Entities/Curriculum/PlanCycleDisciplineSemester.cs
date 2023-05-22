@@ -28,5 +28,6 @@ namespace GraduateProject.Entities.Curriculum
         public Semester Semester { get; set; }
         public Employee Teacher { get; set; }
         public CertificationForm CertificationForm { get; set; }
+        
     }
 }
