@@ -1,6 +1,6 @@
 ﻿using GraduateProject.Entities.Curriculum;
 
-namespace GraduateProject.Entities.Subjects;
+namespace GraduateProject.Entities.Subject;
 
 public class Group
 {

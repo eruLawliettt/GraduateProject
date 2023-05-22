@@ -1,4 +1,4 @@
-﻿using GraduateProject.Entities.Subjects;
+﻿using GraduateProject.Entities.Subject;
 
 namespace GraduateProject.Entities.Curriculum;
 

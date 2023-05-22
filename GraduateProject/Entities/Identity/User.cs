@@ -1,4 +1,4 @@
-﻿using GraduateProject.Entities.Subjects;
+﻿using GraduateProject.Entities.Subject;
 using Microsoft.AspNetCore.Identity;
 
 namespace GraduateProject.Entities.Identity;

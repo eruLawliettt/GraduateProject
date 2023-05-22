@@ -1,5 +1,5 @@
 ﻿using GraduateProject.Entities.Identity;
-using GraduateProject.Entities.Subjects;
+using GraduateProject.Entities.Subject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,7 +17,7 @@ namespace GraduateProject.Data.EntityTypeConfigurations.Subject
                 .WithOne(u => u.Person)
                 .HasForeignKey<Person>(p => p.UserId)
                 .HasConstraintName("FK_Persons_UserId_Users_Id");
-            
+
             builder.HasDiscriminator(p => p.Discriminator)
                 .HasValue<Employee>(nameof(Employee))
                 .HasValue<Student>(nameof(Student));

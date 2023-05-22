@@ -32,6 +32,12 @@ namespace GraduateProject.Data.EntityTypeConfigurations.Curriculum
                 .HasForeignKey(p => p.CertificationFormId)
                 .HasConstraintName("FK_PlanCycleDisciplineSemesters_CertificationFormId_CertificationForms_Id")
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(p => p.Teacher)
+                .WithMany(t => t.PlanCycleDisciplineSemesters)
+                .HasForeignKey(p => p.TeacherId)
+                .HasConstraintName("FK_PlanCycleDisciplineSemesters_TeacherId_Persons_Id")
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

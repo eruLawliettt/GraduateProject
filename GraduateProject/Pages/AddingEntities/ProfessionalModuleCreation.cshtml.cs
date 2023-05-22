@@ -20,19 +20,15 @@ namespace GraduateProject.Pages.AddingEntities
             CertificationForms = _certificationFormService.GetAllCertificationForms();    
         }
 
-
         [BindProperty]
         public InputModel Input { get; set; }
 
         public void OnGet()
-        {
-            
+        {            
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-
-
             var professionalModule = new ProfessionalModule()
             {
                 IsDeleted = false,
@@ -48,7 +44,7 @@ namespace GraduateProject.Pages.AddingEntities
 
             return RedirectToPage("Index");
         }
-
+        
         public class InputModel
         {
             [Required]

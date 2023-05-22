@@ -1,6 +1,6 @@
 ﻿using GraduateProject.Entities.Curriculum;
 using GraduateProject.Entities.Identity;
-using GraduateProject.Entities.Subjects;
+using GraduateProject.Entities.Subject;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

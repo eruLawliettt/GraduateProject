@@ -1,4 +1,4 @@
-﻿namespace GraduateProject.Entities.Subjects
+﻿namespace GraduateProject.Entities.Subject
 {
     public class Position
     {

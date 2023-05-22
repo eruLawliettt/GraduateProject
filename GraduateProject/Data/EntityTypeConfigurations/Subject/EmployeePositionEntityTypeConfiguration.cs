@@ -1,4 +1,4 @@
-﻿using GraduateProject.Entities.Subjects;
+﻿using GraduateProject.Entities.Subject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

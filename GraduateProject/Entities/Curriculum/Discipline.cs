@@ -1,4 +1,6 @@
-﻿namespace GraduateProject.Entities.Curriculum;
+﻿using GraduateProject.Entities.Report;
+
+namespace GraduateProject.Entities.Curriculum;
 
 public class Discipline
 {
@@ -10,5 +12,6 @@ public class Discipline
     public string Name { get; set; }
     public string Description { get; set; }
 
-    public ICollection<PlanCycleDiscipline> PlanCycleDisciplines { get; set; } 
+    public ICollection<PlanCycleDiscipline> PlanCycleDisciplines { get; set; }
+    public ICollection<ReportMark> ReportMarks { get; set; }
 }

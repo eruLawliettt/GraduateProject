@@ -2,7 +2,7 @@
 
 using GraduateProject.Entities.Identity;
 
-namespace GraduateProject.Entities.Subjects
+namespace GraduateProject.Entities.Subject
 {
     public abstract class Person
     {

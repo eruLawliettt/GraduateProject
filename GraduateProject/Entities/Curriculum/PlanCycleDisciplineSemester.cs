@@ -1,4 +1,6 @@
-﻿namespace GraduateProject.Entities.Curriculum
+﻿using GraduateProject.Entities.Subject;
+
+namespace GraduateProject.Entities.Curriculum
 {   
     /// <summary>
     /// DEEP WEB SHIT
@@ -19,10 +21,12 @@
         /// </summary>
         public int PracticalHours { get; set; }
 
+        public Guid TeacherId { get; set; }
         public Guid CertificationFormId { get; set; }
-
+        
         public PlanCycleDiscipline PlanCycleDiscipline { get; set; }
         public Semester Semester { get; set; }
+        public Employee Teacher { get; set; }
         public CertificationForm CertificationForm { get; set; }
     }
 }
