@@ -1,5 +1,6 @@
 ﻿using GraduateProject.Entities.Curriculum;
 using GraduateProject.Entities.Identity;
+using GraduateProject.Entities.Report;
 using GraduateProject.Entities.Subject;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -28,7 +29,7 @@ namespace GraduateProject.Data
 
         #endregion
 
-        #region Subjects
+        #region Subject
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeePosition> EmployeePositions { get; set; }
@@ -36,6 +37,15 @@ namespace GraduateProject.Data
         public DbSet<Person> Persons { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Student> Students { get; set; }
+
+        #endregion
+
+        #region Report
+
+        public DbSet<ExamReport> ExamReports { get; set; }
+        public DbSet<ProgressReport> ProgressReports { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ReportMark> ReportMarks { get; set; }
 
         #endregion
 

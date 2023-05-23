@@ -24,6 +24,7 @@ public class Group
     /// Куратор
     /// </summary>
     public Employee Supervisor { get; set; }
+    public ICollection<Report.Report> Reports { get; set; }
     public Plan Plan { get; set; }
     public ICollection<Student> Students { get; set; }
 }

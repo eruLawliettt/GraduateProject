@@ -1,4 +1,6 @@
-﻿namespace GraduateProject.Entities.Curriculum;
+﻿using GraduateProject.Entities.Report;
+
+namespace GraduateProject.Entities.Curriculum;
 
 public class Semester
 {
@@ -11,5 +13,6 @@ public class Semester
     public Guid PlanId { get; set; }
     
     public Plan Plan { get; set; }
+    public ICollection<ProgressReport> Reports { get; set; }
     public ICollection<PlanCycleDisciplineSemester> PlanCycleDisciplineSemesters { get; set; }
 }
