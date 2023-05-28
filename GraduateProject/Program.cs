@@ -1,7 +1,12 @@
 using GraduateProject.Data;
 using GraduateProject.Entities.Identity;
+using GraduateProject.Entities.Subject;
 using GraduateProject.Services.Curriculum;
 using GraduateProject.Services.Curriculum.Interfaces;
+using GraduateProject.Services.Report;
+using GraduateProject.Services.Report.Interfaces;
+using GraduateProject.Services.Subject;
+using GraduateProject.Services.Subject.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +29,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+#region Services
 builder.Services.AddTransient<ApplicationDbContext>();
 builder.Services.AddTransient<IPlanService, PlanService>();
 builder.Services.AddTransient<IStudyDirectionService, StudyDirectionService>();
@@ -32,6 +38,11 @@ builder.Services.AddTransient<ICertificationFormService, CertificationFormServic
 builder.Services.AddTransient<IProfessionalModuleService, ProfessionalModuleService>();
 builder.Services.AddTransient<IDisciplineService, DisciplineService>();
 builder.Services.AddTransient<ISemesterService, SemesterService>();
+builder.Services.AddTransient<IProgressReportService, ProgressReportService>();
+builder.Services.AddTransient<IPositionService, PositionService>();
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+
+#endregion
 
 builder.Services.AddRazorPages();
 

@@ -1,5 +1,5 @@
 ﻿@page
-@model GraduateProject.Pages.AddingEntities.ProfessionalModuleCreationModel
+@model GraduateProject.Pages.AdminPanel.StudyDirection.CreateModel
 @{
 }
 
@@ -21,22 +21,12 @@
     </div>
 
     <div class="form-floating mb-3">
-        <input class="form-control" asp-for="Input.CertificationHours" aria-required="true" />
-        <label class="form-label" asp-for="Input.CertificationHours"></label>
+        <input class="form-control" asp-for="Input.Period" aria-required="true" />
+        <label class="form-label" asp-for="Input.Period"></label>
     </div>
-    
-    <div class="form-floating mb-3">
-        <select class="form-select" asp-for="Input.CertificationFormId" aria-required="true">
-            @foreach (var certificationForm in Model.CertificationForms)
-            {
-                <option value="@certificationForm.Id">@certificationForm.Name</option>
-            }
-        </select>
-        <label class="form-label" asp-for="Input.CertificationFormId"></label>
-    </div>
-                     
+
     <button class="btn btn-primary" type="submit">
-        Добавить модуль
+        Добавить направление
     </button>
 
 </form>

@@ -1,0 +1,44 @@
+﻿@page
+@model GraduateProject.Pages.AdminPanel.StudyDirection.IndexModel
+@{
+}
+
+<div>    
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="Create">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Добавить направление обучения
+        </a>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="../Index">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Назад
+        </a>
+    </div>
+    
+    <div class="d-flex mt-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Код</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Период обучения(мес.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var direction in Model.StudyDirections)
+                {
+                    <tr>
+                        <th scope="row">@direction.Code</th>
+                        <th>@direction.Name</th>
+                        <th>@direction.Description</th>
+                        <th>@direction.Period</th>
+                    </tr>
+                }                          
+            </tbody>
+        </table>
+    </div>
+</div>
