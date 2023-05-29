@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-floating mb-3">
-        <select class="form-select" size="5" asp-for="Input.Positions" aria-required="true">
+        <select class="form-select" asp-for="Input.Positions" aria-required="true">
             @foreach (var position in Model.Positions)
             {
                 <option value="@position.Id">@position.Name</option>

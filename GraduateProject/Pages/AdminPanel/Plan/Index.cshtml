@@ -1,0 +1,70 @@
+﻿@page
+@model GraduateProject.Pages.AdminPanel.Plan.IndexModel
+@{
+}
+
+<div>
+    <div class="m-3">
+        <a class="btn btn-primary" asp-page="Create">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Сформировать план
+        </a>
+    </div>
+
+    <div class="m-3">
+        <a class="btn btn-primary" asp-page="../Index">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Назад
+        </a>
+    </div>
+
+    <div class="d-flex m-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Группа</th>
+                    <th scope="col">Направление</th>
+                    <th scope="col">Циклы</th>
+                    <th scope="col">Проф модули</th>
+                    <th scope="col">Семестры</th>
+                    <th scope="col">
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var plan in Model.Plans)
+                {
+                    <tr>
+                        <th scope="col">@plan.Group.Name</th>
+                        <th scope="col">@plan.Group.StudyDirection.Name</th>
+                        <th scope="col">@plan.PlanCycles.Count</th>
+                        <th scope="col">
+                            @{
+                                int pmCount = 0;
+                                foreach(var pc in plan.PlanCycles)
+                                {
+                                    foreach(var pcd in pc.PlanCycleDisciplines)
+                                    {
+                                        if (pcd.ProfessionalModule != null)
+                                            pmCount++;
+
+                                    }
+                                }
+                            }
+                            @pmCount
+                        </th>
+                        <th>
+                            <div class="m-3">
+                                <a class="btn btn-primary" asp-page="">
+                                    <i class="bi bi-clipboard2-plus-fill"></i>
+                                    Подробнее
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

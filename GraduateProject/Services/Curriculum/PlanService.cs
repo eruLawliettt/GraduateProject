@@ -1,6 +1,7 @@
 ﻿using GraduateProject.Data;
 using GraduateProject.Entities.Curriculum;
 using GraduateProject.Services.Curriculum.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduateProject.Services.Curriculum
 {
@@ -45,6 +46,9 @@ namespace GraduateProject.Services.Curriculum
         {
             return _context.Plans
                 .Where(p => p.IsDeleted != true)
+                .Include(p => p.Group)
+                .ThenInclude(g => g.StudyDirection)
+                .Include(p => p.PlanCycles)
                 .ToList();
         }
 
