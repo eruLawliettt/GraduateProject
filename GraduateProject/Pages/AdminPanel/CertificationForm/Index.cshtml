@@ -1,0 +1,40 @@
+﻿@page
+@model GraduateProject.Pages.AdminPanel.CertificationForm.IndexModel
+@{
+}
+
+<div>
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="Create">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Добавить форму
+        </a>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="../Index">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Назад
+        </a>
+    </div>
+
+    <div class="d-flex mt-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var certificationForm in Model.CertificationForms)
+                {
+                    <tr>
+                        <th>@certificationForm.Name</th>
+                        <th>@certificationForm.Description</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

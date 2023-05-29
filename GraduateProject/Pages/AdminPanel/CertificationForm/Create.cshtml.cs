@@ -1,19 +1,19 @@
-using GraduateProject.Entities.Curriculum;
 using GraduateProject.Services.Curriculum.Interfaces;
+using GraduateProject.Services.Subject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace GraduateProject.Pages.AddingEntities
+namespace GraduateProject.Pages.AdminPanel.CertificationForm
 {
-    public class CertificationFormCreationModel : PageModel
+    public class CreateModel : PageModel
     {
-        private readonly ICertificationFormService _certificationFormService;
+        private readonly ICertificationFormService _certificationFomService;
 
-        public CertificationFormCreationModel(ICertificationFormService certificationFormService)
+        public CreateModel(ICertificationFormService certificationFomService)
         {
-            _certificationFormService = certificationFormService;
+            _certificationFomService = certificationFomService;
         }
 
         [BindProperty]
@@ -25,15 +25,13 @@ namespace GraduateProject.Pages.AddingEntities
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var certificationForm = new CertificationForm()
+            var certificationForm = new Entities.Curriculum.CertificationForm()
             {
-                IsDeleted = false,
-                IsHidden = false,              
                 Name = Input.Name,
                 Description = Input.Description,
             };
 
-            await _certificationFormService.CreateCertificationFormAsync(certificationForm);
+            await _certificationFomService.CreateCertificationFormAsync(certificationForm);
 
             return RedirectToPage("Index");
         }

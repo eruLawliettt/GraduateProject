@@ -1,6 +1,7 @@
 ﻿using GraduateProject.Data;
 using GraduateProject.Entities.Subject;
 using GraduateProject.Services.Subject.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduateProject.Services.Subject
 {
@@ -42,6 +43,8 @@ namespace GraduateProject.Services.Subject
         public List<Group> GetAllGroups()
         {
             return _context.Groups
+                .Include(g => g.StudyDirection)
+                .Include(g => g.Supervisor)
                 .ToList();
         }
 

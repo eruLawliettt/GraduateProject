@@ -2,3 +2,41 @@
 @model GraduateProject.Pages.AdminPanel.Group.CreateModel
 @{
 }
+
+<form class="col-6 mx-auto my-3" method="post">
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.Name" aria-required="true" />
+        <label class="form-label" asp-for="Input.Name"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.EntryDate" aria-required="true" />
+        <label class="form-label" asp-for="Input.EntryDate"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" asp-for="Input.StudyDirectionId" aria-required="true">
+            @foreach (var direction in Model.StudyDirections)
+            {
+                <option value="@direction.Id">@direction.Name</option>
+            }
+        </select>
+        <label class="form-label" asp-for="Input.StudyDirectionId"></label>
+    </div>
+    
+    <div class="form-floating mb-3">
+        <select class="form-select" asp-for="Input.SupervisorId" aria-required="true">
+            @foreach (var employee in Model.Employees)
+            {
+                <option value="@employee.Id">@employee.LastName @employee.FirstName</option>
+            }
+        </select>
+        <label class="form-label" asp-for="Input.SupervisorId"></label>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+        Добавить направление
+    </button>
+
+</form>

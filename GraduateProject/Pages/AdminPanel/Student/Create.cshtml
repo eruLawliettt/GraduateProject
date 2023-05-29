@@ -1,0 +1,54 @@
+﻿@page
+@model GraduateProject.Pages.AdminPanel.Student.CreateModel
+@{
+}
+
+<form class="col-6 mx-auto my-3" method="post">
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.FirstName" aria-required="true" />
+        <label class="form-label" asp-for="Input.FirstName"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.MiddleName" aria-required="true" />
+        <label class="form-label" asp-for="Input.MiddleName"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.LastName" aria-required="true" />
+        <label class="form-label" asp-for="Input.LastName"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Input.DateOfBirth" aria-required="true" />
+        <label class="form-label" asp-for="Input.DateOfBirth"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" asp-for="Input.Gender" aria-required="true">
+            @foreach (var gender in Model.Genders)
+            {
+                <option>@gender</option>
+            }
+        </select>
+        <label class="form-label" asp-for="Input.Gender"></label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" asp-for="Input.GroupId" aria-required="true">
+            @foreach (var group in Model.Groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
+        </select>
+        <label class="form-label" asp-for="Input.GroupId"></label>
+    </div>
+
+
+
+    <button class="btn btn-primary" type="submit">
+        Добавить работника
+    </button>
+
+</form>

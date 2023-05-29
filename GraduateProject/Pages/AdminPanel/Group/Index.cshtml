@@ -22,15 +22,22 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Код</th>
                     <th scope="col">Название</th>
-                    <th scope="col">Описание</th>
-                    <th scope="col">Период обучения(мес.)</th>
+                    <th scope="col">Дата поступления</th>
+                    <th scope="col">Направление</th>
                     <th scope="col">Куратор</th>
                 </tr>
             </thead>
             <tbody>
-                
+                @foreach (var group in Model.Groups)
+                {
+                    <tr>
+                        <th scope="col">@group.Name</th>
+                        <th scope="col">@group.EntryDate.ToShortDateString()</th>
+                        <th scope="col">@group.StudyDirection.Name</th>
+                        <th scope="col">@group.Supervisor.LastName @group.Supervisor.FirstName</th>
+                    </tr>                   
+                }
             </tbody>
         </table>
     </div>

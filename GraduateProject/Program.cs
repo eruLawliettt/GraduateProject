@@ -41,6 +41,8 @@ builder.Services.AddTransient<ISemesterService, SemesterService>();
 builder.Services.AddTransient<IProgressReportService, ProgressReportService>();
 builder.Services.AddTransient<IPositionService, PositionService>();
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<IGroupService, GroupService>();
+builder.Services.AddTransient<IStudentService, StudentService>();
 
 #endregion
 
