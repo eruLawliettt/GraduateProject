@@ -1,40 +1,90 @@
 ﻿@page
 @model GraduateProject.Pages.Curriculum.IndexModel
-
 @{
-
 }
 
 <div>
-    <div class="d-flex ms-3">
-        <a class="btn btn-primary" asp-page="Create" asp-route-planId="">
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="Create">
             <i class="bi bi-clipboard2-plus-fill"></i>
-            Добавить учебный план
+            Сформировать план
         </a>
     </div>
 
-    <div class="d-flex">
-        <ul class="list-group m-3">
-            @foreach (var plan in Model.Plans)
-            {
-                <li class="card text-white bg-secondary mb-3">
-                    @if (plan.GroupId != null)
-                    {
-                        <div class="card-header">Учебный план группы: @plan.Group.Name</div>
-                    }
-                    else
-                    {
-                        <div class="card-header">Учебный план без группы</div>
-                    }
-                    <div class="card-body">
-                        <h5 class="card-title">Заглушка</h5>
-                        <p class="card-text">Заглушка</p>
-                    </div>
-
-                </li>
-            }
-        </ul>
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-page="../Index">
+            <i class="bi bi-clipboard2-plus-fill"></i>
+            Назад
+        </a>
     </div>
-    
 
+    <div class="d-flex mt-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Группа</th>
+                    <th scope="col">Направление</th>
+                    <th scope="col">Циклы</th>
+                    <th scope="col">Проф модули</th>
+                    <th scope="col">Семестры</th>
+                    <th scope="col">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var plan in Model.Plans)
+                {
+                    <tr>
+                        @{
+                            if (plan.Group != null)
+                            {
+                                <th scope="col">@plan.Group.Name</th>
+                                <th scope="col">@plan.Group.StudyDirection.Name</th>
+                            }
+                            else
+                            {
+                                <th scope="col">Нет группы</th>
+                                <th scope="col">Нет направления</th>
+                            }
+                        }
+                        
+                        <th scope="col">@plan.PlanCycles.Count</th>
+                        <th scope="col">
+                            @{
+                                int pmCount = 0;
+                                foreach (var pc in plan.PlanCycles)
+                                {
+                                    foreach (var pcd in pc.PlanCycleDisciplines)
+                                    {
+                                        if (pcd.ProfessionalModule != null)
+                                            pmCount++;
+
+                                    }
+                                }
+                            }
+                            @pmCount
+                        </th>
+                        @if (plan.Semesters != null)
+                        {
+                            <th scope="col">@plan.Semesters.Count</th>
+                        }
+                        else
+                        {
+                            <th scope="col">0</th>
+                        }
+
+                        <th>
+                            <div class="m-3">
+                                <a class="btn btn-primary" asp-page="">
+                                    <i class="bi bi-clipboard2-plus-fill"></i>
+                                    Подробнее
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
