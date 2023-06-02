@@ -20,6 +20,12 @@ namespace GraduateProject.Services.Report
             return await _context.SaveChangesAsync();
         }
 
+        public async Task<int> CreateReportMarkAsync(ReportMark reportMark)
+        {
+            _context.ReportMarks.Add(reportMark);
+            return await _context.SaveChangesAsync();
+        }
+
         public async Task<int> UpdateProgressReportAsync(ProgressReport progressReport)
         {
             _context.ProgressReports.Update(progressReport);
@@ -30,6 +36,13 @@ namespace GraduateProject.Services.Report
         {            
             return _context.ProgressReports
                 .ToList();          
-        }  
+        }
+
+        public ProgressReport GetProgressReportById(Guid Id)
+        {
+            return _context.ProgressReports
+                .FirstOrDefault(p => p.Id == Id)
+                ?? throw new InvalidOperationException("PR by id was not found.");
+        }
     }
 }

@@ -6,8 +6,10 @@ namespace GraduateProject.Services.Report.Interfaces
     public interface IProgressReportService
     {
         Task<int> CreateProgressReportAsync(ProgressReport progressReport);
+        Task<int> CreateReportMarkAsync(ReportMark reportMark);
         Task<int> UpdateProgressReportAsync(ProgressReport progressReport);
 
         List<ProgressReport> GetAllProgressReports();
+        ProgressReport GetProgressReportById(Guid Id);
     }
 }

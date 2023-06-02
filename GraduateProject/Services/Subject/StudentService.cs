@@ -48,6 +48,10 @@ namespace GraduateProject.Services.Subject
         public Student GetStudentById(Guid studentId)
         {
             return _context.Students
+                .Include(s => s.ReportMarks)
+                .ThenInclude(r => r.Discipline)
+                .Include(s => s.ReportMarks)
+                .ThenInclude(r => r.Report)
                .FirstOrDefault(s => s.Id == studentId)
                ?? throw new InvalidOperationException("Student by id was not found.");
         }

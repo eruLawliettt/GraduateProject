@@ -1,6 +1,8 @@
 using GraduateProject.Entities.Curriculum;
+using GraduateProject.Entities.Report;
 using GraduateProject.Entities.Subject;
 using GraduateProject.Services.Curriculum.Interfaces;
+using GraduateProject.Services.Report.Interfaces;
 using GraduateProject.Services.Subject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,9 +18,12 @@ namespace GraduateProject.Pages.Mark.Groups
         private readonly IPlanService _planService;
         private readonly ISemesterService _semesterService;
         private readonly IDisciplineService _disciplineService;
+        private readonly IProgressReportService _progressReportService;
 
         public List<Plan> Plans { get; set; }
         public List<Discipline> Disciplines { get; set; }
+        public List<ProgressReport> ProgressReports { get; set; }
+
 
         [BindProperty(SupportsGet = true)]
         public string GroupId { get; set; }
@@ -28,14 +33,17 @@ namespace GraduateProject.Pages.Mark.Groups
         public IndexModel(IGroupService groupService,
             IPlanService planService,
             ISemesterService semesterService,
-            IDisciplineService disciplineService)
+            IDisciplineService disciplineService,
+            IProgressReportService progressReportService)
         {
             _groupService = groupService;
             _planService = planService;
             _semesterService = semesterService;
             _disciplineService = disciplineService;
+            _progressReportService = progressReportService;
             Plans = _planService.GetAllPlans();
-            Disciplines = _disciplineService.GetAllDisciplines();                                           
+            Disciplines = _disciplineService.GetAllDisciplines();   
+            ProgressReports = _progressReportService.GetAllProgressReports();
         }
 
         [BindProperty]
@@ -57,13 +65,12 @@ namespace GraduateProject.Pages.Mark.Groups
             {
                 if (plan.GroupId == item.GroupId)
                     planExists = true;
-                else
-                    planExists = false;
+                
             }
 
             if (planExists == false)
             {
-                _planService.CreatePlanAsync(plan);
+                await _planService.CreatePlanAsync(plan);
 
                 for (int i = 1; i <= 8; i++)
                 {
@@ -74,9 +81,47 @@ namespace GraduateProject.Pages.Mark.Groups
                         Number = i,
                         PlanId = plan.Id
                     };
-                    _semesterService.CreateSemesterAsync(semester);
+
+                    await _semesterService.CreateSemesterAsync(semester);                  
                 }
             }
+
+            Group = _groupService.GetGroupById(Guid.Parse(GroupId));
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Group = _groupService.GetGroupById(Guid.Parse(GroupId));
+
+            var report = ProgressReports
+                .FirstOrDefault(p => (p.GroupId == Guid.Parse(GroupId)) 
+                && (p.SemesterId == Guid.Parse(Input.SemesterId)));
+            if (report == default)
+            {
+                var progressReport = new ProgressReport()
+                {
+                    Number = Group.Name + DateTime.Now.Day.ToString() + Group.Name.Length,
+                    Date = DateTime.Now,
+                    GroupId = Group.Id,
+                    SemesterId = Guid.Parse(Input.SemesterId)
+                };
+
+                report = progressReport;
+                await _progressReportService.CreateProgressReportAsync(progressReport);
+            }
+
+            var mark = new ReportMark()
+            {
+                ReportId = report.Id,
+                DisciplineId = Guid.Parse(Input.DisciplineId),
+                StudentId = Guid.Parse(Input.StudentId),
+                Mark = Input.Mark
+            };
+
+            await _progressReportService.CreateReportMarkAsync(mark);
+
+            
+            return RedirectToPage("../Index");
         }
 
         public class InputModel
@@ -94,7 +139,7 @@ namespace GraduateProject.Pages.Mark.Groups
             public string SemesterId { get; set; }
 
             [Required]
-            [Display(Name = "Оценка")]
+            [Display(Name = "Оценка (2-5, Зачёт, Незачёт)")]
             public string Mark { get; set; }
 
         }

@@ -1,0 +1,23 @@
+﻿@page "{groupId}"
+@model GraduateProject.Pages.Report.Groups.IndexModel
+@{
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Просмотр успеваемости</h1>
+</div>
+
+<div class="text-center">
+    <p class="h1">Группа @Model.Group.Name</p>
+</div>
+
+
+@foreach (var student in Model.Group.Students)
+{
+    <div class="row m-3">
+        <a class="btn btn-secondary w-200" asp-route-studentId="@student.Id" asp-page="Students/Index">
+            @student.FirstName @student.MiddleName @student.LastName
+        </a>
+    </div>
+}

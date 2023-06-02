@@ -1,0 +1,27 @@
+﻿@page "{studentId}"
+@model GraduateProject.Pages.Report.Groups.Students.IndexModel
+@{
+}
+
+<div class="d-flex m-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Код дисциплины</th>
+                <th scope="col">Название дисциплины</th>
+                <th scope="col">Семестр</th>
+                <th scope="col">Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reportMark in Model.Student.ReportMarks)
+            {
+                <tr>
+                    <th scope="col">@reportMark.Discipline.Code</th>
+                    <th scope="col">@reportMark.Discipline.Name</th>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

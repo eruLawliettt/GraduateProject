@@ -1,8 +1,10 @@
 using GraduateProject.Data;
 using GraduateProject.Entities.Curriculum;
 using GraduateProject.Entities.Report;
+using GraduateProject.Entities.Subject;
 using GraduateProject.Services.Curriculum.Interfaces;
 using GraduateProject.Services.Report.Interfaces;
+using GraduateProject.Services.Subject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,19 +12,17 @@ namespace GraduateProject.Pages.Report
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IProgressReportService _progressReportService;
-        public List<ProgressReport> Reports { get; set; }
+        private readonly IGroupService _groupService;
+        public List<Group> Groups { get; set; }
 
         public void OnGet()
         {
         }
 
-        public IndexModel(ApplicationDbContext context, IProgressReportService progressReportService)
+        public IndexModel(IGroupService groupService)
         {
-            _context = context;   
-            _progressReportService = progressReportService;
-            Reports = _progressReportService.GetAllProgressReports();
+            _groupService = groupService;
+            Groups = _groupService.GetAllGroups();
         }
     }
 }
