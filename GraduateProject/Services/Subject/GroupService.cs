@@ -44,6 +44,7 @@ namespace GraduateProject.Services.Subject
         {
             return _context.Groups
                 .Include(g => g.StudyDirection)
+                .Include(g => g.Students)
                 .Include(g => g.Supervisor)
                 .ToList();
         }
@@ -51,7 +52,10 @@ namespace GraduateProject.Services.Subject
         public Group GetGroupById(Guid groupId)
         {
             return _context.Groups
-                .FirstOrDefault(c => c.Id == groupId)
+                .Include(g => g.Plan)
+                .ThenInclude(p => p.Semesters)
+                .Include(g => g.Students)
+                .FirstOrDefault(c => c.Id == groupId)                
                 ?? throw new InvalidOperationException("Group by id was not found.");
         }
 

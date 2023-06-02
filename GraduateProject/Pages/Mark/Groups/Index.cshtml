@@ -1,0 +1,36 @@
+﻿@page "{groupId}"
+@model GraduateProject.Pages.Mark.Groups.IndexModel
+@{
+}
+
+
+
+<div class="form-floating mb-3">
+    <select class="form-select" asp-for="Input.StudentId" aria-required="true">
+        @foreach (var student in Model.Group.Students)
+        {
+            <option value="@student.Id">@student.LastName @student.FirstName</option>
+        }
+    </select>
+    <label class="form-label" asp-for="Input.StudentId"></label>
+</div>
+
+<div class="form-floating mb-3">
+    <select class="form-select" asp-for="Input.DisciplineId" aria-required="true">
+        @foreach (var discipline in Model.Disciplines)
+        {
+            <option value="@discipline.Id">@discipline.Code @discipline.Name</option>
+        }
+    </select>
+    <label class="form-label" asp-for="Input.DisciplineId"></label>
+</div>
+
+<div class="form-floating mb-3">
+    <select class="form-select" asp-for="Input.SemesterId" aria-required="true">
+        @foreach (var semseter in Model.Group.Plan.Semesters)
+        {
+            <option value="@semseter.Id">Семестр @semseter.Number</option>
+        }
+    </select>
+    <label class="form-label" asp-for="Input.SemesterId"></label>
+</div>
