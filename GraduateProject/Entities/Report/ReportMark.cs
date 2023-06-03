@@ -11,7 +11,7 @@ namespace GraduateProject.Entities.Report
 
         public string Mark { get; set; }
 
-        public Report Report { get; set; }
+        public ProgressReport Report { get; set; }
         public Discipline Discipline { get; set; }
         public Student Student { get; set; }
     }

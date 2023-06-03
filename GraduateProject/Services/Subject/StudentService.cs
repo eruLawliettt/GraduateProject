@@ -52,6 +52,7 @@ namespace GraduateProject.Services.Subject
                 .ThenInclude(r => r.Discipline)
                 .Include(s => s.ReportMarks)
                 .ThenInclude(r => r.Report)
+                .ThenInclude(r => r.Semester)
                .FirstOrDefault(s => s.Id == studentId)
                ?? throw new InvalidOperationException("Student by id was not found.");
         }
