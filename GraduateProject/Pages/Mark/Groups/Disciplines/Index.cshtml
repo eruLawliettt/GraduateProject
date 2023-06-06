@@ -1,0 +1,67 @@
+﻿@page "{groupId}/{disciplineId}"
+@model GraduateProject.Pages.Mark.Groups.Disciplines.IndexModel
+
+
+<form class="col-12 mx-auto my-3" method="post">
+
+    <div class="text-center">
+        <p class="h1">Группа @Model.Group.Name</p>
+    </div>
+
+    <div class="text-center">
+        <p class="h1">Дисциплина @Model.Discipline.Name</p>
+    </div>
+
+    <div class="form-floating mb-3">
+
+        <select class="form-select" asp-for="Input.SemesterId" aria-required="true">
+
+            @foreach(var semester in Model.Semesters)
+            {
+                <option value="@semester.Id">Семестр: @semester.Number</option>
+            }
+        </select>
+        <label class="form-label" asp-for="Input.SemesterId"></label>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Студент</th>
+                <th scope="col">Год рождения</th>
+                <th scope="col">Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 0;
+                foreach (var student in Model.Students)
+                {                                     
+                    <tr>
+                        <td>
+                            <label>@student.LastName @student.FirstName @student.MiddleName</label>                        
+                        </td>
+                        <td>@student.DateOfBirth.ToShortDateString()</td>
+                        <td>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" asp-for="Input.Marks[i]" aria-required="true" />
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                }
+        </tbody>
+
+    </table>
+
+
+
+
+    <button class="btn btn-primary" type="submit">
+        Выставить оценки
+    </button>
+
+</form>
+
+

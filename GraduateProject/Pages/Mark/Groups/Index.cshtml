@@ -4,43 +4,23 @@
 }
 
 
-<form class="col-6 mx-auto my-3" method="post">
-    <div class="form-floating mb-3">
-        <select class="form-select" asp-for="Input.StudentId" aria-required="true">
-            @foreach (var student in Model.Group.Students)
-            {
-                <option value="@student.Id">@student.LastName @student.FirstName</option>
-            }
-        </select>
-        <label class="form-label" asp-for="Input.StudentId"></label>
-    </div>
-    
-    <div class="form-floating mb-3">
-        <select class="form-select" asp-for="Input.DisciplineId" aria-required="true">
-            @foreach (var discipline in Model.Disciplines)
-            {
-                <option value="@discipline.Id">@discipline.Code @discipline.Name</option>
-            }
-        </select>
-        <label class="form-label" asp-for="Input.DisciplineId"></label>
-    </div>
-    
-    <div class="form-floating mb-3">
-        <select class="form-select" asp-for="Input.SemesterId" aria-required="true">
-            @foreach (var semseter in Model.Group.Plan.Semesters)
-            {
-                <option value="@semseter.Id">Семестр @semseter.Number</option>
-            }
-        </select>
-        <label class="form-label" asp-for="Input.SemesterId"></label>
-    </div>
 
-    <div class="form-floating mb-3">
-        <input class="form-control" asp-for="Input.Mark" aria-required="true" />
-        <label class="form-label" asp-for="Input.Mark"></label>
-    </div>
+<div class="text-center">
+    <h1 class="display-4">Группа: @Model.Group.Name</h1>
+</div>
 
-    <button class="btn btn-primary" type="submit">
-        Выставить оценку
-    </button>
-</form>
+<div class="text-center">
+    <p class="h1">Выставить оценки по:</p>
+</div>
+
+
+@foreach (var discipline in Model.Disciplines)
+{
+    <div class="row m-3">
+            <a class="btn btn-secondary w-200" asp-route-groupId="@Model.Group.Id" 
+                                               asp-route-disciplineId="@discipline.Id" 
+                                               asp-page="Disciplines/Index">
+            @discipline.Name
+        </a>
+    </div>
+}

@@ -44,6 +44,7 @@ namespace GraduateProject.Pages.Mark.Groups
             Plans = _planService.GetAllPlans();
             Disciplines = _disciplineService.GetAllDisciplines();   
             ProgressReports = _progressReportService.GetAllProgressReports();
+
         }
 
         [BindProperty]
@@ -93,54 +94,14 @@ namespace GraduateProject.Pages.Mark.Groups
         {
             Group = _groupService.GetGroupById(Guid.Parse(GroupId));
 
-            var report = ProgressReports
-                .FirstOrDefault(p => (p.GroupId == Guid.Parse(GroupId)) 
-                && (p.SemesterId == Guid.Parse(Input.SemesterId)));
-            if (report == default)
-            {
-                var progressReport = new ProgressReport()
-                {
-                    Number = Group.Name + DateTime.Now.Day.ToString() + Group.Name.Length,
-                    Date = DateTime.Now,
-                    GroupId = Group.Id,
-                    SemesterId = Guid.Parse(Input.SemesterId)
-                };
-
-                report = progressReport;
-                await _progressReportService.CreateProgressReportAsync(progressReport);
-            }
-
-            var mark = new ReportMark()
-            {
-                ReportId = report.Id,
-                DisciplineId = Guid.Parse(Input.DisciplineId),
-                StudentId = Guid.Parse(Input.StudentId),
-                Mark = Input.Mark
-            };
-
-            await _progressReportService.CreateReportMarkAsync(mark);
-
-            
             return RedirectToPage("../Index");
         }
 
         public class InputModel
         {
             [Required]
-            [Display(Name = "Студент")]
-            public string StudentId { get; set; }
-
-            [Required]
             [Display(Name = "Дисциплина")]
             public string DisciplineId { get; set; }
-
-            [Required]
-            [Display(Name = "Семестр")]
-            public string SemesterId { get; set; }
-
-            [Required]
-            [Display(Name = "Оценка (2-5, Зачёт, Незачёт)")]
-            public string Mark { get; set; }
 
         }
 

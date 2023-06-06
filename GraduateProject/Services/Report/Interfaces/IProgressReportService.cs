@@ -10,6 +10,7 @@ namespace GraduateProject.Services.Report.Interfaces
         Task<int> UpdateProgressReportAsync(ProgressReport progressReport);
 
         List<ProgressReport> GetAllProgressReports();
+        List<ReportMark> GetAllReportMarks();
         ProgressReport GetProgressReportById(Guid Id);
     }
 }

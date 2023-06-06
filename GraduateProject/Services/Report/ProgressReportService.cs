@@ -2,6 +2,7 @@
 using GraduateProject.Entities.Curriculum;
 using GraduateProject.Entities.Report;
 using GraduateProject.Services.Report.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduateProject.Services.Report
 {
@@ -36,6 +37,14 @@ namespace GraduateProject.Services.Report
         {            
             return _context.ProgressReports
                 .ToList();          
+        }
+
+        public List<ReportMark> GetAllReportMarks()
+        {
+            return _context.ReportMarks
+                .Include(r => r.Report)
+                .ThenInclude(r => r.Group)
+                .ToList();
         }
 
         public ProgressReport GetProgressReportById(Guid Id)
