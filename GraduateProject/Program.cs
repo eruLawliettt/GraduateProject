@@ -9,6 +9,7 @@ using GraduateProject.Services.Subject;
 using GraduateProject.Services.Subject.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,19 @@ builder.Services.AddTransient<IStudentService, StudentService>();
 #endregion
 
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthorization(opt =>
+{
+    opt.AddPolicy("Admin", policy =>
+    {
+        policy.RequireClaim("AccessLevel", "3");
+    });
+    opt.AddPolicy("Teacher", policy =>
+    {
+        policy.RequireClaim("AccessLevel", "2");
+    });
+
+});
 
 var app = builder.Build();
 
