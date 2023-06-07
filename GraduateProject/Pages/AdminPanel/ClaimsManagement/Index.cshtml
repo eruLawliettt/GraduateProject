@@ -1,0 +1,59 @@
+﻿@page
+@model GraduateProject.Pages.AdminPanel.ClaimsManagement.IndexModel
+@{
+}
+
+<div class="text-center">
+    <h2 class="display-4">Управление доступом</h2>
+</div>
+
+<form class="col-6 mx-auto my-3" method="post">
+    <div class="text-center mt-3">
+        <p>Человек</p>
+    </div>
+
+    <select class="form-select" asp-for="Input.PersonId">
+        @{
+        string discriminator = "";
+        foreach (var person in Model.People)
+            {
+                    if (person.Discriminator == "Employee")
+                        discriminator = "Работник";
+                    else
+                        discriminator = "Студент";
+
+                    <option value="@person.Id">@discriminator / @person.LastName @person.FirstName @person.MiddleName / Год рождения: @person.DateOfBirth.ToShortDateString()</option>
+            }   
+        }
+        <label class="form-label" asp-for="Input.PersonId"></label>
+    </select>
+
+    <div class="text-center mt-3">
+        <p>Почта пользователя</p>
+    </div>
+
+    <select class="form-select" asp-for="Input.UserId">
+        @foreach (var user in Model.Users)
+        {
+            <option value="@user.Id">@user.Email</option>
+        }
+        <label class="form-label" asp-for="Input.UserId"></label>
+    </select>
+
+    <div class="text-center mt-3" >
+        <p>Уровень доступа</p>
+    </div>
+
+    <select class="form-select" asp-for="Input.ClaimValue">     
+        <option value="1">Студент</option>
+        <option value="2">Преподаватель</option>
+        <option value="3">Администратор</option>    
+        <label class="form-label" asp-for="Input.ClaimValue"></label>
+    </select>
+
+    <button class="btn btn-primary mt-3" type="submit">
+        Готово
+    </button>
+
+</form>
+
