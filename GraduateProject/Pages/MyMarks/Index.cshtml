@@ -1,8 +1,23 @@
-﻿@page
-
-@using GraduateProject.Entities.Identity;
+﻿@page "{studentId}/{semesterId}"
 @model GraduateProject.Pages.MyMarks.IndexModel
+@{
+}
 
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
-
+<h5>Ведомость студента @Model.Student.FirstName @Model.Student.MiddleName @Model.Student.LastName за @Model.Semester.Number семестр</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Дисциплина</th>
+            <th scope="col">Оценка</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reportMark in Model.Student.ReportMarks.Where(r => r.Report.Semester.Id == Guid.Parse(Model.SemesterId)))
+        {
+            <tr>
+                <td>@reportMark.Discipline.Name</td>
+                <td>@reportMark.Mark</td>
+            </tr>
+        }               
+    </tbody>
+</table>

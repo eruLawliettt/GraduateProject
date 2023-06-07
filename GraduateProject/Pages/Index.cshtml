@@ -1,9 +1,52 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+@using GraduateProject.Entities.Identity;
+@using GraduateProject.Entities.Subject;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+@{
+    
+    if (SignInManager.IsSignedIn(User))
+        {
+
+         var user = await UserManager.GetUserAsync(User);
+         if (Model.IsUserStudent(user.Id))
+         {         
+            Student currentUser = Model.GetStudentByUserId(user.Id);
+            <div class="card text-center">
+               <div class="card-header">
+                   @currentUser.FirstName @currentUser.LastName
+               </div>
+               <div class="card-body">
+
+                   <h5 class="card-title">
+                       @currentUser.Group.Name
+                   </h5>
+
+                   <p class="card-text">
+                       Посмотреть личную ведомость успеваемости по семестрам
+                   </p>
+
+                   <div class="row">                  
+                   @foreach (var semester in currentUser.Group.Plan.Semesters)
+                   {
+                        <a type="button" class="btn btn-primary col m-3" asp-route-studentId="@currentUser.Id" asp-route-semesterId="@semester.Id" asp-page="MyMarks/Index">
+                            @semester.Number
+                        </a>                           
+                   }                   
+                    </div>
+
+               </div>
+               <div class="card-footer text-body-secondary">
+                    @currentUser.Group.Name
+                </div>
+            </div>
+        }
+    
+    }
+}
