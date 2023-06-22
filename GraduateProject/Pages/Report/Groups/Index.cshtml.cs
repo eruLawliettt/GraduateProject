@@ -1,3 +1,4 @@
+using GraduateProject.Data;
 using GraduateProject.Entities.Curriculum;
 using GraduateProject.Entities.Report;
 using GraduateProject.Entities.Subject;
@@ -13,13 +14,13 @@ namespace GraduateProject.Pages.Report.Groups
     {
         private readonly IGroupService _groupService;
         private readonly IDisciplineService _disciplineService;
-        private readonly ISemesterService _semesterService;
+        private readonly ApplicationDbContext _context;    
         
 
         [BindProperty(SupportsGet = true)]
         public string GroupId { get; set; }
 
-        public List<Discipline> Disciplines { get; set; }
+        public List<Discipline> Disciplines { get; set; }   
         public List<Semester> Semesters { get; set; }
 
         public Group Group { get; set; }
@@ -36,10 +37,7 @@ namespace GraduateProject.Pages.Report.Groups
             Group = _groupService.GetGroupById(Guid.Parse(GroupId));
             Disciplines = _disciplineService.GetAllDisciplines();
 
-            Semesters = Group.Plan.Semesters.ToList();
-
-            
-
+            Semesters = Group.Plan.Semesters.ToList();           
         }
 
 
